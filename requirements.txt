@@ -5,3 +5,4 @@ djangorestframework==3.13.1
 django-settings-export==1.2.1
 django-jazzmin==2.5.0
 requests==2.27.1
+gunicorn
