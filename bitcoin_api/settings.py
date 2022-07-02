@@ -1,5 +1,6 @@
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,10 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'on_*c+9bps#13)icibv@i@cspb63lo(bge@5-+x0)+1m#h)979'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["onrender.com"]
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -135,9 +138,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR.joinpath('static'),
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR.joinpath('static'),
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media')
