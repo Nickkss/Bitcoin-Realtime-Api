@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+Profile
+{% endblock title %}
+{% block content %}
+<div class="container mt-5 py-5">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <label>Name</label>
+                    <p class="fs-4">{{request.user.name}}</p>
+                    <label>Email</label>
+                    <p class="fs-5">{{request.user.email}}</p>
+                    <label>Mobile No.</label>
+                    <p class="fs-5">{{request.user.phone}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Auth Token</h5>
+                    <div class="input-group mb-3">
+                        <form action="" method="post" id="refresh_auth_token_form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-primary"><i
+                                    class="fa-solid fa-arrows-rotate fa-fw"></i></button>
+                        </form>
+                        <button class="btn btn-outline-primary" onclick="javascript: showHide(this);"><i
+                                class="fa-solid fa-eye fa-fw"></i></button>
+                        <input type="password" id="auth_token" value="{{request.user.profile.auth_token}}"
+                            class="form-control" readonly>
+                        <button class="btn btn-outline-dark" onclick="javascript: copyAuthToken();"><i
+                                class="fa-solid fa-clipboard me-2 fa-fw"></i>Copy</button>
+                    </div>
+                    <p class="card-text">Don't share this token with anyone.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <a href="{{request.user.get_logout_url}}" class="btn btn-dark px-5"><i
+                    class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout</a>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'js/popup.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'js/profile.js' %}?{% now 'U' %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+Available Api's
+{% endblock title %}
+{% block content %}
+<div class="container mt-5 py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="accordion" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                            Available Api's
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul>
+                                    <li>
+                                        <figure>
+                                            <blockquote class="blockquote">
+                                                <p class="fw-bold mb-0">Get Real Time Bitcoin Price</p>
+                                                <small class="fw-bold text-success" style="font-size: 14px;">Method:
+                                                    <code class="fw-bold fs-6"><cite>POST</cite></code></small>
+                                            </blockquote>
+                                            <figcaption class="blockquote-footer">
+                                                <cite
+                                                    class="text-primary">{{current_site}}{% url 'api:GetBitcoinPrice' %}</cite>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Documentation
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul>
+                                    <li>
+                                        <p>Login & Go to Profile.</p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Copy Auth Token.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            For authenticate, the token key should be included in the
+                                            <code>Authorization</code> HTTP
+                                            header. The key should be prefixed by the string literal
+                                            <code>"Token"</code>, with
+                                            whitespace
+                                            separating the
+                                            two strings.<br>
+                                            For example:
+                                        </p>
+                                        <div class="alert bg-light border border-danger mt-3 mb-0">
+                                            <p class="text-primary mb-0"><code>Authorization</code>: Token
+                                                9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
