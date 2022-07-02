@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "ec324caa-c99c-48bf-8449-64125f27f744",
+		"name": "Bitcoin Price Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16705642"
+	},
+	"item": [
+		{
+			"name": "Get Bitcoin Price Post Method",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/get-price/?page_size=10&page_number=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"get-price",
+						""
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "page_number",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "Token 8e55ad9566b4a66407fbd2b6a9bf182ec9b30d43",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status test\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Response must be valid and have a body\", function () {",
+					"     pm.response.to.be.ok;",
+					"     pm.response.to.be.withBody;",
+					"     pm.response.to.be.json;",
+					"});",
+					"",
+					"pm.test(\"Data fetched\", function () {",
+					"    var jsonData = pm.response.json();",
+					"    pm.expect(jsonData['succ']).to.be.true;",
+					"});",
+					"",
+					"pm.test(\"Response time is less than 1000ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+					"});"
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,7 @@
+Django==3.1.1
+django-phonenumber-field==6.1.0
+phonenumbers==8.12.44
+djangorestframework==3.13.1
+django-settings-export==1.2.1
+django-jazzmin==2.5.0
+requests==2.27.1
